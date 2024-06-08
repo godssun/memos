@@ -3,7 +3,7 @@ form.addEventListener("submit", handleSubmit);
 
 async function editMemo(event) {
   const id = event.target.dataset.id;
-  const editInput = prompt("수정할 값을 입력하세요");
+  const editInput = prompt("수정할 값을 입력하세요!!");
   if (!editInput) return;
 
   const res = await fetch(`/memos/${id}`, {
@@ -51,7 +51,7 @@ function displayMemo(memo) {
   delBtn.addEventListener("click", deleteMemo);
   delBtn.dataset.id = memo.id;
 
-  li.innerText = ` ${memo.content}`;
+  li.innerText = `${memo.content}`;
 
   ul.appendChild(li);
   li.appendChild(editBtn);
