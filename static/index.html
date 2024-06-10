@@ -12,6 +12,14 @@
       <input type="text" name="" id="memo-input" placeholder="메모를 입력해주세요" required />
       <button id="memo-submit">create</button>
     </form>
+
+    <div>
+      <button onclick="setSort('createAt', 'ASC')">등록순 정렬 (오름차순)</button>
+      <button onclick="setSort('createAt', 'DESC')">등록순 정렬 (내림차순)</button>
+      <button onclick="setSort('title', 'ASC')">제목순 정렬 (오름차순)</button>
+      <button onclick="setSort('title', 'DESC')">제목순 정렬 (내림차순)</button>
+    </div>
+
     <ul class="memo-ul"></ul>
     <script src="app.js"></script>
   </body>
