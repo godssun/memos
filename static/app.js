@@ -1,6 +1,15 @@
 const form = document.querySelector("#memo-form");
 form.addEventListener("submit", handleSubmit);
 
+let currentSortBy = "createAt";
+let currentOrder = "ASC";
+
+function setSort(sortBy, order) {
+  currentSortBy = sortBy;
+  currentOrder = order;
+  readMemo();
+}
+
 async function editMemo(event) {
   const id = event.target.dataset.id;
   const editInput = prompt("수정할 값을 입력하세요!!");
@@ -59,7 +68,7 @@ function displayMemo(memo) {
 }
 
 async function readMemo() {
-  const res = await fetch("/memos");
+  const res = await fetch(`/memos?sortedBy=${currentSortBy}&order=${currentOrder}`);
   const jsonRes = await res.json();
   const ul = document.querySelector(".memo-ul");
   ul.innerText = "";
@@ -75,6 +84,8 @@ async function createMemo(value) {
     body: JSON.stringify({
       id: new Date().getTime(),
       content: value,
+      title: value, // Title도 content와 같은 값으로 임시 설정
+      createAt: new Date().toISOString(), // 현재 시간을 createAt으로 설정
     }),
   });
 
